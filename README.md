@@ -1,4 +1,4 @@
-# DBMS Final Project – Student Submission
+# DBMS Final Project
 
 I completed a small e‑commerce system using PostgreSQL, FastAPI, and a minimalist vanilla JS frontend. This repository contains the runnable code plus a `deliverables/` folder with the PDFs and ERD for grading.
 
