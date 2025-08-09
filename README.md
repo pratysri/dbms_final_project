@@ -1,10 +1,12 @@
-# DBMS Final Project Starter (PostgreSQL + FastAPI + Basic Frontend)
+# DBMS Final Project – Student Submission
 
-This starter kit matches your course requirements:
-- PostgreSQL schema + seed data
-- Required SQL queries
-- Minimal FastAPI API (CRUD for products, customers, credit cards, purchases)
-- Super simple HTML frontend calling the API
+I completed a small e‑commerce system using PostgreSQL, FastAPI, and a minimalist vanilla JS frontend. This repository contains the runnable code plus a `deliverables/` folder with the PDFs and ERD for grading.
+
+Highlights:
+- Products, customers, credit cards, and purchases with line items
+- Clean REST API (FastAPI) with Pydantic validation
+- Minimal, modern UI (Pico.css) that exercises all endpoints
+- SQL schema with seed data + example analytical queries
 
 ## Quick Start
 
@@ -29,18 +31,19 @@ uvicorn app:app --reload
 
 The API will run on http://127.0.0.1:8000
 
-### 3) Open the basic frontend
-Open `frontend/index.html` in your browser. It expects the API at `http://127.0.0.1:8000`.
+### 3) Run the frontend
+From the `frontend/` directory, serve the files and open the app:
+```bash
+cd ../frontend
+python3 -m http.server 8080
+# then open http://127.0.0.1:8080
+```
 
 ---
 
 ## Project Structure
 ```
 dbms_final_starter/
-  docs/
-    requirements.md
-    schema.md
-    erd.dbml
   sql/
     db.sql
     queries.sql
@@ -52,15 +55,59 @@ dbms_final_starter/
     index.html
     app.js
     styles.css
+  deliverables/
+    docs/
+      requirements.pdf
+      schema.pdf
+      frontend_testing_guide.pdf (or .md)
+      ERD Diagram.png (or .pdf)
+    sql/
+      db.sql
+      queries.sql
   README.md
 ```
 
-## Deliverables mapping
-- **Requirements (PDF)**: export `docs/requirements.md` as PDF
-- **ER Diagram**: open `docs/erd.dbml` in dbdiagram.io and export the image/PDF
-- **Relational Schema**: `docs/schema.md`
-- **DB Implementation**: `sql/db.sql` (single SQL file with CREATE TABLE + INSERTs)
-- **SQL Queries**: `sql/queries.sql`
-- **Business Logic / Demo**: run the API and use the frontend to demo
-- **Video**: record your screen running the queries and the app
+## Deliverables (what I’m submitting)
+- Requirements (PDF): `deliverables/docs/requirements.pdf`
+- Relational schema (PDF): `deliverables/docs/schema.pdf`
+- Frontend testing guide (PDF): `deliverables/docs/frontend_testing_guide.pdf` (or `.md`)
+- ERD image: `deliverables/docs/ERD Diagram.png` (or `.pdf`)
+- Database implementation: `deliverables/sql/db.sql` (CREATE TABLE + INSERT seed)
+- Example SQL queries: `deliverables/sql/queries.sql`
+- Submission readme: `deliverables/README_SUBMISSION.md`
+
+## Basic Use Cases (what to try)
+- Search products by name and price range
+- Add a product, then verify it appears in the list
+- Register a new customer
+- Create a purchase with multiple line items (stock is validated and decremented)
+- View purchase details (items, totals)
+- Get low‑stock products below a threshold
+- Update a product (name/description/price/stock)
+- Toggle product active/inactive
+
+See `deliverables/docs/frontend_testing_guide.pdf` for a step‑by‑step walkthrough with inputs to type.
+
+## API Endpoints (summary)
+- GET `/products` (with optional filters `name`, `min_price`, `max_price`)
+- POST `/products`
+- PUT `/products/{id}`
+- PATCH `/products/{id}/active` (toggle active flag)
+- GET `/products/low_stock?threshold=<n>`
+- POST `/customers`
+- GET `/customers/{id}/credit_cards`
+- POST `/purchases` (creates purchase with items, validates stock)
+- GET `/purchases/{id}` (detail with line items)
+
+## Running the example SQL
+You can execute example queries in `sql/queries.sql`:
+```bash
+psql -d dbms_final -f sql/queries.sql
 ```
+Or copy/paste individual queries into `psql`.
+
+## Demo script (for grading)
+1) Show ERD image and mention core tables/relations
+2) Run `sql/queries.sql` to demonstrate analytics
+3) Hit a couple of endpoints from Swagger UI: http://127.0.0.1:8000/docs
+4) Use the frontend to perform the basic use cases above
