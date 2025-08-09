@@ -1,0 +1,47 @@
+// ERD for E‑Commerce Mini Backend
+
+Table customer {
+  id serial [pk]
+  name text
+  email text [unique, not null]
+  created_at timestamptz
+}
+
+Table credit_card {
+  id serial [pk]
+  customer_id int [ref: > customer.id]
+  brand text
+  last4 char(4)
+  exp_month smallint
+  exp_year smallint
+  token text
+  created_at timestamptz
+}
+
+Table product {
+  id serial [pk]
+  name text
+  description text
+  price numeric(10,2)
+  stock_qty int
+  active boolean
+  created_at timestamptz
+}
+
+Table purchase {
+  id serial [pk]
+  customer_id int [ref: > customer.id]
+  purchased_at timestamptz
+  total_amount numeric(12,2)
+  status text
+}
+
+Table purchase_item {
+  purchase_id int [ref: > purchase.id]
+  product_id int [ref: > product.id]
+  qty int
+  unit_price numeric(10,2)
+  indexes {
+    (purchase_id, product_id) [pk]
+  }
+}

@@ -1,0 +1,55 @@
+body { font-family: system-ui, -apple-system, Arial, sans-serif; margin: 24px; }
+h1 { margin-bottom: 8px; }
+section { border: 1px solid #ccc; padding: 16px; border-radius: 10px; margin: 16px 0; }
+form { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+input { padding: 6px 8px; }
+button { padding: 6px 10px; cursor: pointer; }
+#products ul, #lowStock ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  #products ul, #lowStock ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+#products li, #lowStock li {
+  border: 1px solid var(--pico-muted-border-color, rgba(0,0,0,.08));
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  background: var(--pico-card-background-color, var(--pico-background-color));
+}
+
+.subtitle {
+  color: var(--pico-muted-color);
+  margin-top: -0.5rem;
+}
+
+/* Refine sections to feel like cards with Pico */
+section {
+  border: 1px solid var(--pico-muted-border-color, rgba(0,0,0,.08));
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.3rem;
+}
+
+/* Messages */
+#addProductMsg,
+#addCustomerMsg,
+#purchaseMsg,
+#updateProductMsg,
+#toggleActiveMsg,
+#purchaseDetail {
+  color: var(--pico-muted-color);
+}
