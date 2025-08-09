@@ -105,9 +105,3 @@ You can execute example queries in `sql/queries.sql`:
 psql -d dbms_final -f sql/queries.sql
 ```
 Or copy/paste individual queries into `psql`.
-
-## Demo script (for grading)
-1) Show ERD image and mention core tables/relations
-2) Run `sql/queries.sql` to demonstrate analytics
-3) Hit a couple of endpoints from Swagger UI: http://127.0.0.1:8000/docs
-4) Use the frontend to perform the basic use cases above
